@@ -1,8 +1,14 @@
 .table-container {
   padding: 4%;
+  display: flex;
+  justify-content: center;
 }
 
 .actions {
   display: flex;
   justify-content: space-evenly;
+}
+
+.spinner {
+
 }
