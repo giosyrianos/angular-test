@@ -44,7 +44,7 @@ export class PostListComponent implements OnInit, OnDestroy {
   onChangePage(pageOfItems: Array<any>) {
     // update current page of items
     this.pageOfPosts = pageOfItems;
-}
+  }
 
 
   ngOnDestroy()  {
