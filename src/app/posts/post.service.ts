@@ -25,7 +25,7 @@ export class PostService {
     // Possible query params for serverside pagination
     // const queryParams = `?pagesize=${postsPerPage}&page=${currentPage}`;
     this.http
-      .get<{ message: string, posts: any }>(`${Config.apiEndpoint}`)
+      .get<any>(`${Config.apiEndpoint}`)
       .pipe(
         map((postData) => {
           return {
