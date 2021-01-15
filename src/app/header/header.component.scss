@@ -1,0 +1,26 @@
+.nav-container {
+  background-color: var(--secondary);
+  display: flex;
+  justify-content: center;
+  padding: 1rem 4rem;
+}
+
+.nav {
+  max-width: 1920px;
+  width: 100%;
+  font-size: 1.4rem;
+  .nav-item {
+    a  {
+     color: #fff;
+    }
+    .active {
+      color: var(--primary)
+    }
+}
+
+}
+
+
+.spacer {
+  flex: 1 1 auto;
+}

@@ -9,6 +9,7 @@ import { HeaderComponent } from './header/header.component';
 import { PostListComponent } from './posts/post-list/post-list.component';
 import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { ContactComponent } from './contact/contact.component';
+import { SinglePostComponent } from './posts/single-post/single-post.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ContactComponent } from './contact/contact.component';
     HeaderComponent,
     PostListComponent,
     PostCreateComponent,
-    ContactComponent
+    ContactComponent,
+    SinglePostComponent
   ],
   imports: [
     BrowserModule,
