@@ -11,11 +11,11 @@ import { ContactComponent } from './contact/contact.component';
 const routes: Routes = [
   // { path: 'property', loadChildren: () => import('./modules/property/property.module').then(m => m.PropertyModule) },
 
-  {path: '', redirectTo: '/posts', pathMatch: 'full'},
-  { path: 'posts', component: PostListComponent },
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
+  { path: 'home', component: PostListComponent },
   { path: 'posts/:postId', component: SinglePostComponent },
   { path: 'edit/:postId', component: PostCreateComponent },
-  { path: 'posts/create', component: PostCreateComponent },
+  { path: 'home/create-post', component: PostCreateComponent },
   { path: 'login', component: LoginComponent},
   { path: 'sign-up', component: SignupComponent},
   { path: 'contact', component: ContactComponent}
