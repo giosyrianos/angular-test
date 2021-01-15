@@ -51,4 +51,9 @@ export class PostService {
       });
     return [...this.posts];
   }
+
+  updatePostsListener() {
+    return this.postsListUpdated.asObservable();
+  }
+
 }
