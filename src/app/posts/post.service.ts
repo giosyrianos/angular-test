@@ -29,8 +29,8 @@ export class PostService {
       .pipe(
         map((postData) => {
           return {
-            posts: postData.posts.map(post => {
-              // In case properties from server response are not compatible with the Post Model
+            posts: postData.map(post => {
+              // In case property names from server response are not compatible with the Post Model
             return {
               userId: post.userId,
               title: post.title,
