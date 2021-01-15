@@ -20,8 +20,9 @@ export class PostService {
     private router: Router
   ) { }
 
-  getPosts(postsPerPage: number, currentPage: number) {
-    // Possible query params for serverside pagiation
+  getPosts() {
+    // getPosts(postsPerPage: number, currentPage: number) {}
+    // Possible query params for serverside pagination
     // const queryParams = `?pagesize=${postsPerPage}&page=${currentPage}`;
     this.http
       .get<{ message: string, posts: any }>(`${Config.apiEndpoint}`)
