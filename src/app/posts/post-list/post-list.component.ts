@@ -12,6 +12,8 @@ import { Subscription } from 'rxjs';
 export class PostListComponent implements OnInit, OnDestroy {
   public posts: Post[] = [];
   private postsSub: Subscription;
+
+  pageOfPosts: Array<Post>;
   isLoading = false;
 
   totalPosts = 0;
@@ -38,6 +40,11 @@ export class PostListComponent implements OnInit, OnDestroy {
         console.log(this.posts);
       });
   }
+
+  onChangePage(pageOfItems: Array<any>) {
+    // update current page of items
+    this.pageOfPosts = pageOfItems;
+}
 
 
   ngOnDestroy()  {

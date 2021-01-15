@@ -12,6 +12,7 @@ import { PostListComponent } from './posts/post-list/post-list.component';
 import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { ContactComponent } from './contact/contact.component';
 import { SinglePostComponent } from './posts/single-post/single-post.component';
+import { JwPaginationModule } from 'jw-angular-pagination';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { SinglePostComponent } from './posts/single-post/single-post.component';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    JwPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

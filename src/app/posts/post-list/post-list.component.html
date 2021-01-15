@@ -14,7 +14,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let post of posts">
+      <tr *ngFor="let post of pageOfPosts">
         <td> {{ post.id }} </td>
         <th scope="row">{{ post.title }}</th>
         <td>User {{ post.userId}} </td>
@@ -25,4 +25,11 @@
       </tr>
     </tbody>
   </table>
+
+  <div class="card-footer pb-0 pt-3">
+    <jw-pagination
+      [items]="posts"
+      (changePage)="onChangePage($event)"
+    ></jw-pagination>
+  </div>
 </div>
