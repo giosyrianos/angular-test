@@ -3,6 +3,8 @@ import { Post } from '../post.model';
 import { PostService } from '../post.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from './../../components/modal/modal.component';
 
 @Component({
   selector: 'app-post-list',
@@ -24,6 +26,7 @@ export class PostListComponent implements OnInit, OnDestroy {
 
   pageSizeOptions = [5, 10, 20];
   constructor(
+    private modalService: NgbModal,
     private postService: PostService,
     private router: Router
   ) { }
@@ -53,6 +56,29 @@ export class PostListComponent implements OnInit, OnDestroy {
 
   editPost(postId: string) {
     this.router.navigateByUrl('/edit/' + postId);
+  }
+
+  openModal(item: Post) {
+    const modalRef = this.modalService.open(ModalComponent,
+      {
+        scrollable: true,
+        windowClass: 'myCustomModalClass',
+        centered: true
+        // keyboard: false,
+        // backdrop: 'static'
+      });
+
+    const data = {
+      header: `Delete post: ${item.id}`,
+      body: `${item.title}`
+    };
+
+    modalRef.componentInstance.fromParent = data;
+    modalRef.result.then((result) => {
+      console.log('modalRef.result:', result);
+    }, (reason) => {
+      console.log('modalRef.reason:', reason);
+    });
   }
 
   ngOnDestroy()  {

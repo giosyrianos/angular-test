@@ -13,6 +13,8 @@ import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { ContactComponent } from './contact/contact.component';
 import { SinglePostComponent } from './posts/single-post/single-post.component';
 import { JwPaginationModule } from 'jw-angular-pagination';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { JwPaginationModule } from 'jw-angular-pagination';
     PostListComponent,
     PostCreateComponent,
     ContactComponent,
-    SinglePostComponent
+    SinglePostComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,8 @@ import { JwPaginationModule } from 'jw-angular-pagination';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    JwPaginationModule
+    JwPaginationModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
