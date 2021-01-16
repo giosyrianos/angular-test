@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../post.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { PostService } from '../post.service';
 
 @Component({
   selector: 'app-post-create',
@@ -18,7 +19,9 @@ export class PostCreateComponent implements OnInit {
   private mode = 'create';
   private postId: string;
 
-  constructor() { }
+  constructor(
+    private postService: PostService
+  ) { }
 
   ngOnInit() {
     this.postForm = new FormGroup({
@@ -36,14 +39,13 @@ export class PostCreateComponent implements OnInit {
 
   onSavePost() {
     if (this.postForm.invalid) {
-      console.log(this.postForm);
+      // console.log(JSON.stringify(this.postForm));
       return;
     }
     // this.isLoading = true;
     if (this.mode === 'create') {
-      // this.postService.addPost(this.form.value.title, this.form.value.content, this.form.value.image);
-      // this.form.reset();
-      console.log(this.postForm);
+      this.postService.addPost(this.postForm.value.title, this.postForm.value.content);
+      this.postForm.reset();
     } else {
       // this.postService.updatePost(this.postId, this.form.value.title, this.form.value.content, this.form.value.image);
     }

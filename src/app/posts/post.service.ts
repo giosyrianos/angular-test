@@ -20,6 +20,10 @@ export class PostService {
     private router: Router
   ) { }
 
+  updatePostsListener() {
+    return this.postsListUpdated.asObservable();
+  }
+
   getPosts() {
     // getPosts(postsPerPage: number, currentPage: number) {}
     // Possible query params for serverside pagination
@@ -34,7 +38,7 @@ export class PostService {
             return {
               userId: post.userId,
               title: post.title,
-              body: post.content,
+              content: post.body,
               id: post.id
             };
           }),
@@ -52,8 +56,36 @@ export class PostService {
     return [...this.posts];
   }
 
-  updatePostsListener() {
-    return this.postsListUpdated.asObservable();
+
+  addPost(title: string, content: string) {
+    const postData: Post = {
+      userId: 1, // change later
+      id: null,
+      title,
+      content
+    };
+    this.http
+      .post<any>(
+        `${Config.apiEndpoint}`,
+        postData
+      )
+      .subscribe(responseData => {
+        // console.log({ responseData });
+        const newPost: Post = {
+          userId: responseData.userId,
+          id: responseData.id,
+          title: responseData.title,
+          content: responseData.content
+        };
+        this.posts.push(newPost);
+        this.postsListUpdated.next({
+          posts: [...this.posts]
+          // Updated post-list will be overwritten since fake bakcend does not save new Data
+          // postCount: regularPostData.totalPosts
+        });
+        this.router.navigate(['/']);
+      });
   }
+
 
 }
