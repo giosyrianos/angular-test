@@ -22,7 +22,7 @@
         <td>User {{ post.userId}} </td>
         <td class="actions">
           <button type="button" class="btn btn-warning" (click)="editPost(post.id)">Edit</button>
-          <button type="button" class="btn btn-danger">Delete</button>
+          <button type="button" class="btn btn-danger" (click)="openModal(post)">Delete</button>
         </td>
       </tr>
     </tbody>
