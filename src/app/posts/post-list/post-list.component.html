@@ -21,7 +21,7 @@
         <th scope="row">{{ post.title }}</th>
         <td>User {{ post.userId}} </td>
         <td class="actions">
-          <button type="button" class="btn btn-warning">Edit</button>
+          <button type="button" class="btn btn-warning" (click)="editPost(post.id)">Edit</button>
           <button type="button" class="btn btn-danger">Delete</button>
         </td>
       </tr>

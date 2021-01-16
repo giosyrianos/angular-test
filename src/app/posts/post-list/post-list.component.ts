@@ -48,7 +48,11 @@ export class PostListComponent implements OnInit, OnDestroy {
   }
 
   createNewPost() {
-    this.router.navigateByUrl('/home/create-post');
+    this.router.navigateByUrl('/create-post');
+  }
+
+  editPost(postId: string) {
+    this.router.navigateByUrl('/edit/' + postId);
   }
 
   ngOnDestroy()  {

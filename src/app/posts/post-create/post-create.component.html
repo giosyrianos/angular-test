@@ -1,4 +1,8 @@
 <div class="container">
+  <div class="spinner-border text-primary spinner" role="status" *ngIf="isLoading">
+    <span class="sr-only">Loading...</span>
+  </div>
+
   <form [formGroup]="postForm" *ngIf="!isLoading" (submit)="onSavePost()">
     <div class="form-group">
       <label>Post Title</label>
@@ -15,6 +19,10 @@
       <textarea class="form-control" rows="4" [formGroup]="postForm" formControlName="content"></textarea>
       <p class="form-text p-2 mb-2 bg-danger text-white" *ngIf="postForm.get('content').invalid && postForm.get('content').touched">Post content cannot be empty!</p>
     </div>
-    <button type="submit" class="btn btn-primary float-right">Publish</button>
+    <div class="container controls p-0">
+      <button type="submit" class="btn btn-primary float-right">Publish</button>
+      <button type="submit" class="btn btn-warning float-right mx-2" *ngIf=" postForm.touched">Cancel</button>
+    </div>
+
   </form>
 </div>

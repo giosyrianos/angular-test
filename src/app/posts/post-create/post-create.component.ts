@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Post } from '../post.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PostService } from '../post.service';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-post-create',
@@ -20,21 +21,43 @@ export class PostCreateComponent implements OnInit {
   private postId: string;
 
   constructor(
-    private postService: PostService
+    private postService: PostService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
     this.postForm = new FormGroup({
       // Adding form controls here
-        title: new FormControl('', {
+        title: new FormControl(null, {
           validators: [Validators.required, Validators.minLength(3)]
         }),
         content: new FormControl(null, {
           validators: [Validators.required]
         })
     });
-    this.mode = 'create';
-    this.postId = null;
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+      if (paramMap.has('postId')) {
+        this.mode = 'edit';
+        this.postId = paramMap.get('postId');
+        this.isLoading = true;
+        this.postService.getPost(this.postId).subscribe(postData => {
+          this.isLoading = false;
+          this.post = {
+            userId: postData.userId,
+            id: postData.id,
+            title: postData.title,
+            content: postData.body,
+          };
+          this.postForm.setValue({
+            title: this.post.title,
+            content: this.post.content,
+          });
+        });
+      } else {
+        this.mode = 'create';
+        this.postId = null;
+      }
+    });
   }
 
   onSavePost() {
@@ -47,7 +70,7 @@ export class PostCreateComponent implements OnInit {
       this.postService.addPost(this.postForm.value.title, this.postForm.value.content);
       this.postForm.reset();
     } else {
-      // this.postService.updatePost(this.postId, this.form.value.title, this.form.value.content, this.form.value.image);
+      this.postService.updatePost(this.postId, this.postForm.value.title, this.postForm.value.content);
     }
   }
 

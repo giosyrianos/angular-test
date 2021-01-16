@@ -12,7 +12,7 @@ import { map } from 'rxjs/operators';
 export class PostService {
 
   private posts: Post[] = [];
-  private postsListUpdated = new Subject<{posts: Post[]}>();
+  private postsListUpdated = new Subject<{ posts: Post[] }>();
   // private postsListUpdated = new Subject<{posts: Post[], postCount: number}>();
 
   constructor(
@@ -35,13 +35,13 @@ export class PostService {
           return {
             posts: postData.map(post => {
               // In case property names from server response are not compatible with the Post Model
-            return {
-              userId: post.userId,
-              title: post.title,
-              content: post.body,
-              id: post.id
-            };
-          }),
+              return {
+                userId: post.userId,
+                title: post.title,
+                content: post.body,
+                id: post.id
+              };
+            }),
             // totalPosts: postData.length
           };
         })
@@ -83,6 +83,41 @@ export class PostService {
           // Updated post-list will be overwritten on redirect
           //  since fake bakcend does not save new data
         });
+        this.router.navigate(['/']);
+      });
+  }
+
+  getPost(id: string) {
+    return this.http.get<{
+      userId: number
+      id: number;
+      title: string;
+      body: string;
+    }>(`${Config.apiEndpoint}/${+id}`);
+  }
+
+  updatePost(id: string, title: string, content: string) {
+    // const post: Post = { id, title, content, imgPath: null };
+    const postData = {
+      id: +id,
+      title,
+      content
+    };
+    this.http
+      .put(`${Config.apiEndpoint}/${id}`, postData)
+      .subscribe(res => {
+        console.log(res);
+        // const updatedPosts = [...this.posts];
+        // const oldPostIndex = updatedPosts.findIndex(p => p.id === id);
+        // const post: Post = {
+        //   id,
+        //   title,
+        //   content,
+        //   imgPath: ''
+        // };
+        // updatedPosts[oldPostIndex] = post;
+        // this.posts = updatedPosts;
+        // this.postsListUpdated.next([...this.posts]);
         this.router.navigate(['/']);
       });
   }
