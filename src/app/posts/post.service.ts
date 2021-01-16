@@ -122,5 +122,14 @@ export class PostService {
       });
   }
 
+  deletePost(postId: number) {
+    return this.http.delete(`${Config.apiEndpoint}/${postId}`);
+      // .subscribe((msg) => {
+      //   console.log(msg);
+      //   const newPostList = this.posts.filter(post => post.id !== postId);
+      //   this.posts = newPostList;
+      //   this.postsListUpdated.next([...this.posts]);
+      // });
+  }
 
 }

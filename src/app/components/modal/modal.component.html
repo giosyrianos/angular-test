@@ -5,9 +5,9 @@
   </button>
 </div>
 <div class="modal-body">
-  <p>{{ fromParent.body }}</p>
+  <h3>{{ fromParent.body }}</h3>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-warning" data-dismiss="modal" (click)="closeModal('close')">Cancel</button>
-  <button type="button" class="btn btn-danger" (click)="closeModal('changes saved!')">Delete</button>
+  <button type="button" class="btn btn-warning" data-dismiss="modal" (click)="closeModal('dismiss')">Cancel</button>
+  <button type="button" class="btn btn-danger" (click)="closeModal('confirm')">Delete</button>
 </div>
