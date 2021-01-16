@@ -3,6 +3,8 @@ import { Post } from '../post.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PostService } from '../post.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from './../../components/modal/modal.component';
 
 @Component({
   selector: 'app-post-create',
@@ -22,6 +24,7 @@ export class PostCreateComponent implements OnInit {
 
   constructor(
     private postService: PostService,
+    private modalService: NgbModal,
     private route: ActivatedRoute
   ) { }
 
@@ -72,6 +75,33 @@ export class PostCreateComponent implements OnInit {
     } else {
       this.postService.updatePost(this.postId, this.postForm.value.title, this.postForm.value.content);
     }
+  }
+
+  dismiss() {
+    const modalRef = this.modalService.open(ModalComponent,
+      {
+        scrollable: true,
+        windowClass: 'myCustomModalClass',
+        centered: true
+      });
+
+    const data = {
+      header: `Do you want to Cancel?`,
+      body: `Any unsaved changes will be lost`,
+      confirmTxt: 'Delete changes',
+      dismissTxt: 'Cancel'
+    };
+
+    modalRef.componentInstance.fromParent = data;
+    modalRef.result.then((result) => {
+      if (result === 'confirm') {
+
+        return;
+      }
+      return;
+    }, (reason) => {
+      console.log('modalRef.reason:', reason);
+    });
   }
 
 }
