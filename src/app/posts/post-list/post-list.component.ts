@@ -64,13 +64,13 @@ export class PostListComponent implements OnInit, OnDestroy {
         scrollable: true,
         windowClass: 'myCustomModalClass',
         centered: true
-        // keyboard: false,
-        // backdrop: 'static'
       });
 
     const data = {
-      header: `Delete post: ${item.id}`,
-      body: `${item.title}`
+      header: `Delete post: ${item.id} ?`,
+      body: `${item.title}`,
+      confirmTxt: 'Delete',
+      dismissTxt: 'Cancel'
     };
 
     modalRef.componentInstance.fromParent = data;

@@ -8,6 +8,6 @@
   <h3>{{ fromParent.body }}</h3>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-warning" data-dismiss="modal" (click)="closeModal('dismiss')">Cancel</button>
-  <button type="button" class="btn btn-danger" (click)="closeModal('confirm')">Delete</button>
+  <button type="button" class="btn btn-warning" data-dismiss="modal" (click)="closeModal('dismiss')">{{ fromParent.dismissTxt }}</button>
+  <button type="button" class="btn btn-danger" (click)="closeModal('confirm')">{{ fromParent.confirmTxt }}</button>
 </div>
