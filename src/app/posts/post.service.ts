@@ -80,8 +80,8 @@ export class PostService {
         this.posts.push(newPost);
         this.postsListUpdated.next({
           posts: [...this.posts]
-          // Updated post-list will be overwritten since fake bakcend does not save new Data
-          // postCount: regularPostData.totalPosts
+          // Updated post-list will be overwritten on redirect
+          //  since fake bakcend does not save new data
         });
         this.router.navigate(['/']);
       });
