@@ -1,6 +1,6 @@
 <div class="table-container">
   <div class="container my-3 text-right">
-    <button class="btn btn-primary">+ Add new </button>
+    <button class="btn btn-primary" (click)="createNewPost()">+ Add new </button>
   </div>
   <div class="spinner-border text-primary spinner" role="status" *ngIf="isLoading">
     <span class="sr-only">Loading...</span>

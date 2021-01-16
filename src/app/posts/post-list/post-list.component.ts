@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Post } from '../post.model';
-
 import { PostService } from '../post.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-list',
@@ -24,7 +24,8 @@ export class PostListComponent implements OnInit, OnDestroy {
 
   pageSizeOptions = [5, 10, 20];
   constructor(
-    public postService: PostService
+    private postService: PostService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -46,6 +47,9 @@ export class PostListComponent implements OnInit, OnDestroy {
     this.pageOfPosts = pageOfItems;
   }
 
+  createNewPost() {
+    this.router.navigateByUrl('/home/create-post');
+  }
 
   ngOnDestroy()  {
     // Called once, before the instance is destroyed.
