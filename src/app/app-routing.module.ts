@@ -18,7 +18,8 @@ const routes: Routes = [
   { path: 'create-post', component: PostCreateComponent,  canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent},
   { path: 'sign-up', component: SignupComponent},
-  { path: 'contact', component: ContactComponent,  canActivate: [AuthGuard]}
+  { path: 'contact', component: ContactComponent, canActivate: [AuthGuard] },
+  { path: '**', redirectTo: '/home' }
 
 ];
 
