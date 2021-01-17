@@ -77,7 +77,6 @@ export class PostListComponent implements OnInit, OnDestroy {
     modalRef.result.then((result) => {
       if (result === 'confirm') {
         this.postService.deletePost(item.id).subscribe((res) => {
-          console.log(res);
           this.postService.getPosts();
         });
         return;
