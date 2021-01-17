@@ -80,8 +80,8 @@ export class PostService {
         this.posts.push(newPost);
         this.postsListUpdated.next({
           posts: [...this.posts]
-          // Updated post-list will be overwritten on redirect
-          //  since fake backend does not save new data
+        /* Updated post-list will be overwritten on redirect
+        since fake backend does not save new data */
         });
         this.router.navigate(['/']);
       });
@@ -103,6 +103,8 @@ export class PostService {
       title,
       content
     };
+  /* Updated post-list will be overwritten on redirect
+  since fake backend does not save new data */
     this.http
       .put(`${Config.apiEndpoint}/${id}`, postData)
       .subscribe(res => {
@@ -123,6 +125,8 @@ export class PostService {
   }
 
   deletePost(postId: number) {
+  /* Updated post-list will be overwritten on redirect
+  since fake backend does not save new data */
     return this.http.delete(`${Config.apiEndpoint}/${postId}`);
       // .subscribe((msg) => {
       //   console.log(msg);
