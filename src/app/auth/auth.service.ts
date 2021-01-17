@@ -44,8 +44,9 @@ export class AuthService {
 
 
   login(email: string, password: string) {
-    const authData: AuthData = { email, password };
-     // this should be the login endpoind like this
+  /*This should be a request to the login endpoind like this */
+
+    // const authData: AuthData = { email, password };
     // this.http
       // .post<{ token: string; expiresIn: number }>(
       //   `${Config.apiEndpoint}/login`,
