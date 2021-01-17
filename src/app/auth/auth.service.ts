@@ -38,13 +38,21 @@ export class AuthService {
     return this.isAuthenticated;
   }
 
+  getAuthStatusListener() {
+    return this.authStatusListener.asObservable();
+  }
+
+
   login(email: string, password: string) {
     const authData: AuthData = { email, password };
-    this.http
-      .post<{ token: string; expiresIn: number }>(
-        `${Config.apiEndpoint}/login`,
-        authData
-      )
+     // this should be the login endpoind like this
+    // this.http
+      // .post<{ token: string; expiresIn: number }>(
+      //   `${Config.apiEndpoint}/login`,
+      //   authData
+      // )
+    // DUMMY REQUEST TO SIMULATE LOGIN
+    this.http.get(`https://jsonplaceholder.typicode.com/users/1`)
       .subscribe(response => {
         console.log(response);
         // token implementation is commented out
