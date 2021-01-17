@@ -6,24 +6,25 @@ import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { ContactComponent } from './contact/contact.component';
-
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   // { path: 'property', loadChildren: () => import('./modules/property/property.module').then(m => m.PropertyModule) },
 
   {path: '', redirectTo: '/home', pathMatch: 'full'},
-  { path: 'home', component: PostListComponent },
-  { path: 'posts/:postId', component: SinglePostComponent },
-  { path: 'edit/:postId', component: PostCreateComponent },
-  { path: 'create-post', component: PostCreateComponent },
+  { path: 'home', component: PostListComponent,  canActivate: [AuthGuard] },
+  { path: 'posts/:postId', component: SinglePostComponent,  canActivate: [AuthGuard] },
+  { path: 'edit/:postId', component: PostCreateComponent,  canActivate: [AuthGuard] },
+  { path: 'create-post', component: PostCreateComponent,  canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent},
   { path: 'sign-up', component: SignupComponent},
-  { path: 'contact', component: ContactComponent}
+  { path: 'contact', component: ContactComponent,  canActivate: [AuthGuard]}
 
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
 export class AppRoutingModule { }
