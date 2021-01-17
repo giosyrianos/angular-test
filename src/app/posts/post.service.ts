@@ -70,7 +70,7 @@ export class PostService {
         postData
       )
       .subscribe(responseData => {
-        // console.log({ responseData });
+        console.log({ responseData });
         const newPost: Post = {
           userId: responseData.userId,
           id: responseData.id,
@@ -81,7 +81,7 @@ export class PostService {
         this.postsListUpdated.next({
           posts: [...this.posts]
           // Updated post-list will be overwritten on redirect
-          //  since fake bakcend does not save new data
+          //  since fake backend does not save new data
         });
         this.router.navigate(['/']);
       });
