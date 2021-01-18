@@ -127,6 +127,7 @@ export class PostService {
   deletePost(postId: number) {
   /* Updated post-list will be overwritten on redirect
   since fake backend does not save new data */
+    alert(`Post ${postId} was Deleted!`);
     return this.http.delete(`${Config.apiEndpoint}/${postId}`);
       // .subscribe((msg) => {
       //   console.log(msg);
